@@ -13,18 +13,20 @@ import { Toaster } from "react-hot-toast";
 
 const PrivateRoute = ({ children }) => {
   const { user , loading} = useAuth();
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+  console.log(user);
+  
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return user ? children : <Navigate to="/signin" />;
 };
 
 const PublicRoute = ({ children }) => {
   const { user, loading } = useAuth();
  
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return user ? <Navigate to="/" /> : children; // Redirect to home if authenticated
 };
 

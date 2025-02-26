@@ -23,7 +23,7 @@ export const Dashboard = () => {
 
   const fetchAllTasks = async () => {
     try {
-      const res = await axiosInstance.get(`/task/all/${user._id}`);
+      const res = await axiosInstance.get(`/task/all/${user.userId}`);
       setTasks(res.data);
       console.log("tasks", res.data);
     } catch (error) {
