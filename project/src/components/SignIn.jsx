@@ -17,8 +17,9 @@ const Signin = () => {
     e.preventDefault();
     try {
       await login(formData);
-      toast.success("Successfully signed in!");
+      
       navigate("/");
+      toast.success("Successfully signed in!");
     } catch (error) {
       toast.error(error.message || "Failed to sign in");
     }

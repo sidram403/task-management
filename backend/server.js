@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://task-management-1od5mo3ve-sidram403s-projects.vercel.app/",
+    origin: "https://task-management-woad-three.vercel.app",
     // origin: "http://localhost:5173",
 
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
