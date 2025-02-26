@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const axiosInstance = axios.create({
   // baseURL: 'https://task-management-vdls.onrender.com/api',
@@ -6,12 +7,17 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('authToken');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = Cookies.get('authToken'); // Retrieve token from cookies
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`; // Add token to Authorization header
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  return config;
-});
+);
 
 export default axiosInstance;

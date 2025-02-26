@@ -1,6 +1,7 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axiosInstance from '../lib/axiosInstance';
+import Cookies from 'js-cookie';
 
 const AuthContext = createContext();
 
@@ -37,6 +38,8 @@ export const AuthProvider = ({ children }) => {
       setUser (response.data.user);
       setToken(response.data.token);
       localStorage.setItem('token', response.data.token);
+      const { token} = response.data; // Assuming API returns token and user data
+      Cookies.set('authToken', token, { expires: 7 }); // Save token in cookies for 7 days
       setIsAuthenticated(true)
     } catch (error) {
       console.error('Login Error:', error);
