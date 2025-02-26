@@ -8,19 +8,27 @@ import taskRoutes from './routes/task.route.js'
 import authMiddleware from "./middleware/authMiddleware.js";
 
 dotenv.config();
+const allowedOrigins = [
+  "https://task-management-woad-three.vercel.app", // Remove trailing slash
+  "http://localhost:5173", // If testing locally
+];
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://task-management-woad-three.vercel.app",
-    // origin: "http://localhost:5173",
-
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Allow cookies/auth headers
   })
 );
+app.options("*", cors());
 
 // Connect to MongoDB
 mongoose
