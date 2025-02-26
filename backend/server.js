@@ -9,7 +9,7 @@ import authMiddleware from "./middleware/authMiddleware.js";
 
 dotenv.config();
 const allowedOrigins = [
-  "https://task-management-woad-three.vercel.app", // Remove trailing slash
+  "https://task-management-woad-three.vercel.app/", // Remove trailing slash
   "http://localhost:5173", // If testing locally
 ];
 
