@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    // origin: "https://realestate-admin-one.vercel.app",
-    origin: "http://localhost:5173",
+    origin: "https://task-management-woad-three.vercel.app/",
+    // origin: "http://localhost:5173",
 
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
